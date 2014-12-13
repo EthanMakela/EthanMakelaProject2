@@ -1,0 +1,202 @@
+var express = require('express');
+var router  = express.Router();
+var db   = require('../models/db');
+
+
+/* View all users in a <table> */
+router.get('/all', function (req, res) {
+    db.GetPlayer(function (err, result) {
+            if (err) throw err;
+            res.render('displayUserTable.ejs', {rs: result});
+        }
+    );
+});
+router.get('/all2', function (req, res) {
+    db.GetPlayer(function (err, result) {
+            if (err) throw err;
+            res.render('displayUserTable2.ejs', {rs: result});
+        }
+    );
+});
+
+/* Create a User */
+
+// Create User Form
+router.get('/Insert', function(req, res){
+    res.render('simpleform.ejs', {action: '/user/create'});
+});
+
+router.get('/edituser', function(req, res){
+	db.GetPlayer(function (err, result) {
+		res.render('displayUserDropDownUpdate.ejs', {rs: result});
+	}
+	);
+});
+    
+router.get('/edituser2', function(req, res){
+	db.GetSinglePlayer(req.query.AccountID, function (err, result) {
+		res.render('simpleUpdateForm.ejs', {rs: result});
+	}
+	);
+});
+
+router.get('/NewFriend1', function(req, res){
+	db.GetUsernameAndID(function (err, result) {
+		if(err) throw err;
+		res.render('displayUserDropDownFriends.ejs', {rs: result});
+	}
+	);
+});
+
+router.get('/NewFriend2', function(req, res){
+	db.GetUsernameAndID(function (err, result) {
+		if(err) throw err;
+	res.render('simpleFriendForm.ejs', {rs: result});
+	}
+	);
+});
+
+
+
+
+router.get('/post', function(req, res){
+    res.render('SimplePostForm.ejs', {action: '/user/post'});
+});
+
+router.get('/view', function(req, res){
+	db.GetPostByID(req.query.AccountID, function (err, result) {
+		if(err) throw err;
+	res.render('displayUserDropDownPost.ejs', {rs: result});
+	});
+});
+/* View a single user's information */
+router.get('/', function (req, res) {
+	db.GetSinglePlayer(req.query.AccountID, function (err, result) {
+	if(err) throw err;
+	res.render('displayUserTableAll.ejs', {rs: result});
+	});
+});
+router.get('/E', function (req, res) {
+	db.GetEverything(req.query.AccountID, function (err, result) {
+	if(err) throw err;
+	res.render('displayUserTableAll2.ejs', {rs: result});
+	});
+});
+router.get('/dropdown', function (req, res) {
+	db.GetUsernameAndID(function (err, result) {
+		if(err) throw err;
+		res.render('displayUserDropDown.ejs', {rs: result});
+	}
+	);
+});
+
+// Save User to the Database
+router.post('/InsertPlayer', function (req, res) {
+    db.InsertPlayer( req.body, function (err, result) {
+            if (err) throw err;
+
+            if(result.AccountID != 'undefined') {
+                var placeHolderValues = {
+                	Name: req.body.Name,
+		    		ShoeSize: req.body.ShoeSize,
+                    GenderofShoe: req.body.GenderofShoe
+                };
+                res.render('displayUserInfo.ejs', placeHolderValues);
+            }
+            else {
+                res.send('Player was not inserted.');
+            }
+        }
+    );
+});
+router.post('/InsertLane', function (req, res) {
+    db.InsertLane( req.body, function (err, result) {
+            if (err) throw err;
+
+            if(result.AccountID != 'undefined') {
+                var placeHolderValues = {
+                	LaneNum: req.body.LaneNum
+		    		NumofPlayers: req.body.NumofPlayers,
+                    PlayerID: req.body.CurrentRound
+                };
+                res.render('displayUserInfo.ejs', placeHolderValues);
+            }
+            else {
+                res.send('Player was not inserted.');
+            }
+        }
+    );
+});
+router.post('/InsertPlayerLane', function (req, res) {
+    db.InsertLane( req.body, function (err, result) {
+            if (err) throw err;
+
+            if(result.AccountID != 'undefined') {
+                var placeHolderValues = {
+                	PlayerID: req.body.PlayerID
+		    		LaneNum: req.body.LaneNum
+                };
+                res.render('displayUserInfo.ejs', placeHolderValues);
+            }
+            else {
+                res.send('Player was not inserted.');
+            }
+        }
+    );
+});
+router.post('/InsertScore', function (req, res) {
+    db.InsertLane( req.body, function (err, result) {
+            if (err) throw err;
+
+            if(result.AccountID != 'undefined') {
+                var placeHolderValues = {
+                	PlayerID: req.body.LaneNum
+		    		RoundNum: req.body.NumofPlayers,
+                    Frame1Score: req.body.Frame1Score,
+                    Frame2Score: req.body.Frame2Score
+                };
+                res.render('displayUserInfo.ejs', placeHolderValues);
+            }
+            else {
+                res.send('Player was not inserted.');
+            }
+        }
+    );
+});
+
+
+
+router.post('/view', function (req, res) {
+	db.GetScoreByID( req.body.PlayerID, function (err, result) {
+		if (err) {
+			throw err;
+		}
+		console.log(result);
+		res.render('displayUserDropDownPost.ejs', {rs: result});
+		});
+});
+
+router.post('/edituser2', function (req, res) {
+    db.EditScore( req.body, function (err, result) {
+            if (err) throw err;
+
+            if(result.AccountID != 'undefined') {
+                var placeHolderValues = {
+		    		PlayerID: req.body.PlayerID,
+                    RoundNum: req.body.RoundNum,
+                    Frame1Score: req.body.Frame1Score,
+                    Frame2Score: req.body.Frame2Score
+                };
+                res.render('displayFormData.ejs', placeHolderValues);
+            }
+            else {
+                res.send('Post not Added.');
+            }
+        }
+    );
+});
+
+
+
+module.exports = router;
+

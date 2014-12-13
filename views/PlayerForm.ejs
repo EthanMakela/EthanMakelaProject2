@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Ethan Makela Project 2</title>
+</head>
+<body>
+<header>
+	 <h1>Ethan's Bowling Tracker</h1>
+	    <br>
+	<div id="header" style = "background-color:#D80000;height:200px;">
+	<img src="http://www.robertphoenix.com/content/wp-content/uploads/2011/12/big-lebowski-last-supper.jpg" 
+  	alt="HTML tutorial" style="width:99%;height:190px;border:0">
+	  
+	    
+    </div>
+    
+</header>
+<table id="partition" style = "padding:0px;margin:0px;">
+	<tr style = "padding:0px;margin:0px;">
+		<td style = "padding:0px;margin:0px;">
+			<div id="sidebar" style = "padding:0px;margin:0px;background-color:#D80000;"> 
+					<h2>Directory Links</h2>
+				   	<li><a href="/">Home			</a></li><br><br>
+				   	<li><a href="/About">About			</a></li><br>
+				   	<h2>InGame Tracker </h2>
+				   	<li><a href="/user/InsertPlayer">1) Insert a Player			</a></li><br><br>
+				   	<li><a href="/user/ViewDropDownLane">2) Insert Lane					</a></li><br><br>
+			   		<li><a href="/user/ViewDropDownScore">3) Insert Round Score					</a></li><br>
+			   		(Continue inserting Score until game is over)	<br><br>
+			   		<li><a href="/user/DropDownUpdate">Update Round Score					</a></li><br>
+			   		<h2>Game logger</h2>	
+			   		<li><a href="/user/DropDownComplete">Insert a Compete Game						</a></li><br><br>	
+			   		<h2>View Statistics</h2>		 					 	
+				   	<li><a href="/user/ViewOverallScore">View Overall Scores			</a></li><br><br>
+				   	<li><a href="/user/ViewStrikes">View Strikes	</a></li><br><br>
+				   	<li><a href="/user/ViewSpares">View Spares	</a></li><br><br>
+				   	<li><a href="/user/ViewShoeRentalsMale">View Shoe Rentals		</a></li><br><br>
+								   	<li><a href="/user/GutterBalls">View Gutterballs		</a></li><br><br>
+			</div>
+		</td>
+		<td style = "vertical-align:top;" ;>
+			<div id="content" style = "padding:0px;margin:0px;background-color:#909090;height:100%;">
+				<h2>Insert a new player</h2>
+	
+
+            <form method="POST" action="<%= action %>">
+    		<table id="login">
+			<tr><td>Name:</td>
+            <!-- name attribute must be provided for non ajax forms -->
+            <td><input type="text" id="Name" name="Name" /></td>
+        	</tr>
+        	<tr><td>Shoe Size:</td>
+            <!-- name attribute must be provided for non ajax forms -->
+            <td><input type="text" id="ShoeSize" name="ShoeSize" /></td>
+        	</tr>
+        	<tr><td>Gender of Shoe:</td>
+            <td><input type="text" id="GenderofShoe" name="GenderofShoe" /></td>
+        	</tr>
+    		</table>
+    		<input type="submit">
+			</form>
+
+            
+            
+
+
+
+
+</div>
+</td>
+</tr>
+</table>
+<footer >
+	
+   
+<% var hideBackLink = true; %>
+<% include footer %>
+</footer>
+</body>
+</html>

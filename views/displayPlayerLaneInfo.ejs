@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Ethan Makela Project 2</title>
+</head>
+<body>
+<header>
+	 <h1 float:"center;">Ethan's Bowling Tracker</h1>
+	    <br>
+	<div id="header" style = "background-color:#D80000;height:200px;">
+	<img src="http://www.robertphoenix.com/content/wp-content/uploads/2011/12/big-lebowski-last-supper.jpg" 
+  	alt="HTML tutorial" style="width:99%;height:190px;border:0" float:"center;">
+	  
+	    
+    </div>
+    
+</header>
+<table id="partition" style = "padding:0px;margin:0px;">
+	<tr style = "padding:0px;margin:0px;">
+		<td style = "padding:0px;margin:0px;">
+			<div id="sidebar" style = "padding:0px;margin:0px;background-color:#D80000;"> 
+					<h2>Directory Links</h2>
+				   	<li><a href="/">Home			</a></ol><br><br>
+				   	<li><a href="/About">About			</a></ol><br>
+				   	<h2>InGame Tracker </h2>
+				   	<li><a href="/user/InsertPlayer">1) Insert a Player			</a></ol><br><br>
+				   	<li><a href="/user/InsertLane">2) Insert Lane					</a></ol><br><br>
+			   		<li><a href="/user/InsertScore">4) Insert Round Score					</a></ol><br>
+			   		(Continue inserting Score until game is over)	<br>
+			   		<h2>Game logger</h2>	
+			   		<li><a href="/user/InsertCompletePlayer">Insert a Compete Game						</a></ol><br><br>	
+			   		<h2>View Statistics</h2>		 					 	
+				   	<li><a href="/user/ViewOverallScore">View Overall Scores			</a></ol><br><br>
+				   	<li><a href="/user/ViewStrikes">View Strikes	</a></ol><br><br>
+				   	<li><a href="/user/ViewSpares">View Spares	</a></ol><br><br>
+				   	<li><a href="/user/ViewShoeRentalsMale">View Shoe Rentals		</a></ol><br><br>
+				   	<li><a href="/user/ViewPlayersinLane">View Players Grouped in Lanes	</a></ol><br><br>
+			</div>
+		</td>
+		<td style = "vertical-align:top;" ;>
+			<div id="content" style = "padding:0px;margin:0px;background-color:#909090;height:100%;">
+				<h2>PlayerLane Infoformation</h2>
+	
+
+            
+
+					<h2>Submitted Data</h2>
+    				<table id="login">
+        			<tr><td>PlayerID: </td>
+            		<td><%= PlayerID %></td>
+        			</tr>
+        			<tr><td>Lane Number: </td>
+            		<td><%= LaneNum %></td>
+        			</tr>
+    				</table>
+            
+            
+
+
+
+
+</div>
+</td>
+</tr>
+</table>
+<footer >
+	
+   
+<% var hideBackLink = true; %>
+<% include footer %>
+</footer>
+</body>
+</html>
